@@ -68,7 +68,7 @@ include "includes/options_config.php";
 ?>
 
 <div class="rounded-top" align="left"> &nbsp; <b><?=$mod_alias?></b> </div>
-<div class="rounded-bottom">
+<div class="rounded-bottom" >
 
     &nbsp;&nbsp;version <?=$mod_version?><br>
     <? 
@@ -80,14 +80,33 @@ include "includes/options_config.php";
     ?>
     
     <?
+	
     $ismoduleup = exec($mod_isup);
-    if ($ismoduleup != "") {
-        echo "&nbsp;&nbsp;$mod_alias  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"includes/module_action.php?service=$ss_mode&action=stop&page=module\"><b>stop</b></a> | <a href=\"includes/module_action.php?service=$ss_mode&action=pair&page=module\"><b>pair</b></a>";
-        echo "<input type='hidden' name='action' value='stop'>";
+    $isAgentUp = exec($mod_agentisup);
+	$ss_mode = "run";
+	
+    if ($ismoduleup != "")
+	{
+        echo "&nbsp;&nbsp;$mod_alias  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"includes/module_action.php?service=$ss_mode&action=stop&page=module\"><b>stop</b></a> | ";
+        
+		if($isAgentUp)
+			echo "<a href=\"includes/module_action.php?service=$ss_mode&action=stop_pair&page=module\"><b>stop pairing</b></a>";
+		else
+			echo "<a href=\"includes/module_action.php?service=$ss_mode&action=pair&page=module\"><b>pair</b></a>";
+		
+		echo "<input type='hidden' name='action' value='stop'>";
         echo "<input type='hidden' name='page' value='module'>";
-    } else { 
-        echo "&nbsp;&nbsp;$mod_alias  <font color=\"red\"><b>disabled</b></font>. | <a href=\"includes/module_action.php?service=$ss_mode&action=start&page=module\"><b>start</b></a> | <a href=\"includes/module_action.php?service=$ss_mode&action=pair&page=module\"><b>pair</b></a>"; 
-        echo "<input type='hidden' name='action' value='start'>";
+    }
+	else
+	{ 
+        echo "&nbsp;&nbsp;$mod_alias  <font color=\"red\"><b>disabled</b></font>. | <a href=\"includes/module_action.php?service=$ss_mode&action=start&page=module\"><b>start</b></a> | "; 
+        
+		if($isAgentUp)
+			echo "<a href=\"includes/module_action.php?service=$ss_mode&action=stop_pair&page=module\"><b>stop pairing</b></a>";
+		else
+			echo "<a href=\"includes/module_action.php?service=$ss_mode&action=pair&page=module\"><b>pair</b></a>";
+		
+		echo "<input type='hidden' name='action' value='start'>";
         echo "<input type='hidden' name='page' value='module'>";
     }
     ?>
@@ -197,36 +216,6 @@ Loading, please wait...
                 
                 $('#loading').hide();
 
-            }
-        });
-        
-        $('#output').html('');
-        $('#loading').show()
-
-    });
-
-    $('#loading').hide();
-
-    </script>
-
-    <script>
-    $('#formInject2').submit(function(event) {
-        event.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: 'includes/ajax.php',
-            data: $(this).serialize(),
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-
-                $('#inject').html('');
-                $.each(data, function (index, value) {
-                    $("#inject").append( value ).append("\n");
-                });
-                
-                $('#loading').hide();
-                
             }
         });
         

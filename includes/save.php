@@ -9,9 +9,11 @@ include "options_config.php";
 
 // Checking POST & GET variables...
 if ($regex == 1) {
+	regex_standard($_POST['type'], "../../../msg.php", $regex_extra);
 	regex_standard($_POST['bluepand_mac'], "../../../msg.php", $regex_extra);
 }
 
+$type = $_POST['type'];
 $bluepand_mac = $_POST["bluepand_mac"];
 
 if ($type == "settings") {

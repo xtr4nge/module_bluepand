@@ -41,12 +41,26 @@ $install = $_GET['install'];
 if($service != "") {
     
     if ($action == "start") {
-	$exec = "sudo $bin_pand -c ".$bluepand_mac." --role PANU --persist 5";
-	exec_fruitywifi($exec);
+		$exec = "sudo $bin_pand -c ".$bluepand_mac." --role PANU --persist 1";
+		exec_fruitywifi($exec);
         
     } else if($action == "stop") {
         // STOP MODULE
         $exec = "$bin_killall $bin_pand_name";
+        exec_fruitywifi($exec);
+    }
+    else if($action == "pair") {
+        $exec = "$bin_hciconfig hci0 piscan";
+        exec_fruitywifi($exec);
+		
+        $exec = "$bin_bluetooth_agent 1234 > /dev/null 2>&1 &"; //run the agent in the background
+        exec_fruitywifi($exec);
+    }
+    else if($action == "stop_pair") {
+        $exec = "$bin_killall $bin_bluetooth_agent";
+        exec_fruitywifi($exec);
+		
+        $exec = "$bin_hciconfig hci0 noscan";
         exec_fruitywifi($exec);
     }
 

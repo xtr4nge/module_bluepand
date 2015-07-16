@@ -18,5 +18,10 @@ $bin_cp = "/bin/cp";
 $bin_chmod = "/bin/chmod";
 $bin_sed = "/bin/sed";
 $bin_rm = "/bin/rm";
+$bin_hcitool = "/usr/bin/hcitool";
+$bin_hciconfig = "/usr/sbin/hciconfig";
+$bin_bluetooth_agent = "/usr/bin/bluetooth-agent";
+
 $mod_isup="ps auxww | grep $bin_pand | grep -v -e 'grep $bin_pand'";
+$mod_agentisup="ps auxww | grep $bin_bluetooth_agent | grep -v -e 'grep $bin_bluetooth_agent'";
 ?>
