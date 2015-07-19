@@ -1,12 +1,11 @@
 <?
-
 $mod_name="bluepand";
 $mod_version="1.0";
 $mod_path="/usr/share/fruitywifi/www/modules/$mod_name";
 $mod_panel="show";
 $bin_pand = "/usr/bin/pand";
 $bin_pand_name = "pand";
-$mod_alias="Blue Pand";
+$mod_alias="BluePand";
 $mod_type="service";
 # EXEC
 $bin_danger = "/usr/share/fruitywifi/bin/danger";

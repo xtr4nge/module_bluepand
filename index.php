@@ -1,6 +1,7 @@
 <? 
 /*
-    Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2015 xtr4nge [_AT_] gmail.com
+	Module BluePand created by @AnguisCaptor
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -73,9 +74,9 @@ include "includes/options_config.php";
     &nbsp;&nbsp;version <?=$mod_version?><br>
     <? 
     if (file_exists( $bin_pand )) { 
-        echo "&nbsp;&nbsp;$mod_alias <font style='color:lime'>installed</font><br>";
+        echo "&nbsp;$mod_alias <font style='color:lime'>installed</font><br>";
     } else {
-        echo "&nbsp;&nbsp;$mod_alias <a href='includes/module_action.php?install=install_$mod_name' style='color:red'>install</a><br>";
+        echo "&nbsp;$mod_alias <a href='includes/module_action.php?install=install_$mod_name' style='color:red'>install</a><br>";
     } 
     ?>
     
@@ -87,7 +88,7 @@ include "includes/options_config.php";
 	
     if ($ismoduleup != "")
 	{
-        echo "&nbsp;&nbsp;$mod_alias  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"includes/module_action.php?service=$ss_mode&action=stop&page=module\"><b>stop</b></a> | ";
+        echo "&nbsp;$mod_alias  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"includes/module_action.php?service=$ss_mode&action=stop&page=module\"><b>stop</b></a> | ";
         
 		if($isAgentUp)
 			echo "<a href=\"includes/module_action.php?service=$ss_mode&action=stop_pair&page=module\"><b>stop pairing</b></a>";
@@ -99,7 +100,7 @@ include "includes/options_config.php";
     }
 	else
 	{ 
-        echo "&nbsp;&nbsp;$mod_alias  <font color=\"red\"><b>disabled</b></font>. | <a href=\"includes/module_action.php?service=$ss_mode&action=start&page=module\"><b>start</b></a> | "; 
+        echo "&nbsp;$mod_alias  <font color=\"red\"><b>disabled</b></font>. | <a href=\"includes/module_action.php?service=$ss_mode&action=start&page=module\"><b>start</b></a> | "; 
         
 		if($isAgentUp)
 			echo "<a href=\"includes/module_action.php?service=$ss_mode&action=stop_pair&page=module\"><b>stop pairing</b></a>";
@@ -140,6 +141,10 @@ Loading, please wait...
                             <td><input name="bluepand_mac" maxlength="23" style="width: 200px" value="<?=$bluepand_mac?>"></td>
                         </tr>
                         <tr>
+                            <td>KeyPass: </td>
+                            <td><input name="bluepand_keypass" maxlength="23" style="width: 200px" value="<?=$bluepand_keypass?>"></td>
+                        </tr>
+						<tr>
                             <td></td>
                             <td>
                                 <input type="submit" value="save">

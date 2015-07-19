@@ -1,6 +1,7 @@
 <? 
 /*
-    Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2015 xtr4nge [_AT_] gmail.com
+	Module BluePand created by @AnguisCaptor
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,9 +18,10 @@
 */ 
 ?>
 <?
-//include "../login_check.php";
+
 include "../../../config/config.php";
 include "../_info_.php";
+include "../../../login_check.php";
 include "../../../functions.php";
 
 include "options_config.php";
@@ -53,7 +55,8 @@ if($service != "") {
         $exec = "$bin_hciconfig hci0 piscan";
         exec_fruitywifi($exec);
 		
-        $exec = "$bin_bluetooth_agent 1234 > /dev/null 2>&1 &"; //run the agent in the background
+        //$exec = "$bin_bluetooth_agent 1234 > /dev/null 2>&1 &"; //run the agent in the background
+		$exec = "$bin_bluetooth_agent $bluepand_keypass > /dev/null 2>&1 &"; //run the agent in the background
         exec_fruitywifi($exec);
     }
     else if($action == "stop_pair") {
